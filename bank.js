@@ -1,52 +1,74 @@
 const depositButton = document.getElementById('deposit-button');
 const withdrawButton = document.getElementById('withdraw-button');
 
-const balanceString = document.getElementById('balance-amount');
-const balanceAmount = balanceString.innerText;
-const balanceAmountNumber = parseFloat(balanceAmount);
+function getInputValue(inputId) {
+    const inputField = document.getElementById(inputId);
+    const inputFieldString = inputField.value;
+    const inputFieldNumber = parseFloat(inputFieldString);
+    inputField.value = '';
+    return inputFieldNumber;
+}
+
+function getInner(innerId) {
+    const innerTxt = document.getElementById(innerId);
+    const innerTxtString = innerTxt.innerText;
+    const innerTxtNumber = parseFloat(innerTxtString);
+    return innerTxtNumber;
+}
+
+function setTextValueById(elementId, newValue) {
+    const textElement = document.getElementById(elementId);
+    textElement.innerText = parseFloat(newValue);
+}
 
 // deposit code start 
 
 depositButton.addEventListener('click', function () {
-    const depositInputString = document.getElementById('deposit-input');
-    const depositInput = depositInputString.value;
-    const depositInputNumber = parseFloat(depositInput);
+    const depositInputNumber = getInputValue('deposit-input');
 
-    const depositString = document.getElementById('deposit-amount');
-    const depositAmount = depositString.innerText;
-    const depositAmountNumber = parseFloat(depositAmount);
+    const depositAmountNumber = getInner('deposit-amount')
 
     const totalDeposit = depositAmountNumber + depositInputNumber;
-    depositString.innerText = totalDeposit;
+    setTextValueById('deposit-amount', totalDeposit)
 
+    const balanceAmountNumber = getInner('balance-amount')
     var totalBalance = balanceAmountNumber + depositInputNumber;
-    balanceString.innerText = totalBalance;
-
-    depositInputString.value = '';
+    setTextValueById('balance-amount', totalBalance)
 })
 
-// withdrow code start 
+// withdraw code start 
 
 withdrawButton.addEventListener('click', function () {
-    const withdrawInputString = document.getElementById('withdraw-input');
-    const withdrawInput = withdrawInputString.value;
-    const withdrawInputNumber = parseFloat(withdrawInput);
+    const withdrawInputNumber = getInputValue('withdraw-input')
+    const withdrawAmountNumber = getInner('withdraw-amount');
+    const balanceAmountNumber = getInner('balance-amount')
 
-    const withdrawString = document.getElementById('withdraw-amount');
-    const withdrawAmount = withdrawString.innerText;
-    const withdrawAmountNumber = parseFloat(withdrawAmount);
-    
-    if(withdrawInput > balanceAmountNumber){
+
+    const totalWithdraw = withdrawAmountNumber + withdrawInputNumber;
+    setTextValueById('withdraw-amount', totalWithdraw)
+
+    var totalBalance = balanceAmountNumber - withdrawInputNumber;
+    if (withdrawInputNumber > balanceAmountNumber) {
         alert('Invalid Amount');
         return;
     }
-
-    const totalWithdraw = withdrawAmountNumber + withdrawInputNumber;
-    withdrawString.innerText = totalWithdraw;
-
-    var totalBalance = balanceAmountNumber - totalWithdraw;
-    balanceString.innerText = totalBalance;
-
-    withdrawInputString.value = '';
-
+    setTextValueById('balance-amount', totalBalance)
 })
+
+
+// withdrawButton.addEventListener('click', function () {
+//     const withdrawInputNumber = getInputValue('withdraw-input');
+//     const withdrawAmountNumber = getInner('withdraw-amount');
+//     const balanceAmountNumber = getInner('balance-amount');
+
+//     const totalWithdraw = parseFloat(withdrawAmountNumber) + parseFloat(withdrawInputNumber);
+//     setTextValueById('withdraw-amount', totalWithdraw);
+
+//     var totalBalance = parseFloat(balanceAmountNumber) - parseFloat(withdrawInputNumber);
+//     if (parseFloat(withdrawInputNumber) > totalBalance) {
+//         alert('Invalid Amount');
+//         return;
+//     }
+
+//     setTextValueById('balance-amount', totalBalance);
+// });
