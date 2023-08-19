@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banks Web App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+    <h1 class="main-title">This is your financial condition</h1>
+
+    <div class="container">
+        <div class="box">
+            <h3 class="box-title">Deposit</h3>
+            <h1 class="amount">$<span id="deposit-amount">0</span></h1>
+        </div>
+
+        <div class="box">
+            <h3 class="box-title">Withdraw</h3>
+            <h1 class="amount">$<span id="withdraw-amount">0</span></h1>
+        </div>
+
+        <div class="box">
+            <h3 class="box-title">Balance</h3>
+            <h1 class="amount">$<span id="balance-amount">1420</span></h1>
+        </div>
+    </div>
+
+    <div class="calc-container">
+        <div class="calc-box">
+            <h2 class="calc-title">Deposit Now</h2>
+            <input placeholder="$ Amount of deposit" type="number" name="" id="deposit-input">
+            <button id="deposit-button">Deposit</button>
+        </div>
+
+        <div class="calc-box">
+            <h2 class="calc-title">Withdraw Now</h2>
+            <input placeholder="$ Amount of Withdraw" type="number" name="" id="withdraw-input">
+            <button id="withdraw-button">Withdraw</button>
+        </div>
+    </div>
+
+    <script src="bank.js"></script>
+</body>
+
+</html>
